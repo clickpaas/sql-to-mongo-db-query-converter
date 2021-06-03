@@ -237,6 +237,18 @@ public final class SqlUtils {
     }
 
     /**
+     * offset 也可能出现在 limit 中
+     * @param limit
+     * @return
+     */
+    public static long getOffsetAsLong(final Limit limit) throws ParseException {
+        if (limit != null && limit.getOffset() != null) {
+            return getLongFromStringIfInteger(SqlUtils.getStringValue(limit.getOffset()));
+        }
+        return -1;
+    }
+
+    /**
      * get offset as long.
      * @param offset the offset
      * @return the offset

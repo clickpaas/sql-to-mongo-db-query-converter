@@ -120,6 +120,14 @@ public final class QueryConverter {
         }
     }
 
+    public MongoDBQueryHolder getMongoDBQueryHolder() {
+        return mongoDBQueryHolder;
+    }
+
+    public void setMongoDBQueryHolder(MongoDBQueryHolder mongoDBQueryHolder) {
+        this.mongoDBQueryHolder = mongoDBQueryHolder;
+    }
+
     private void validate() throws ParseException {
         List<SelectItem> selectItems = sqlCommandInfoHolder.getSelectItems();
         List<SelectItem> filteredItems = Lists.newArrayList(Iterables.filter(selectItems,

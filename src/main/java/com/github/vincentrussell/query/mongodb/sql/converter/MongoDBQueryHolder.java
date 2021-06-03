@@ -8,8 +8,8 @@ import java.util.List;
 import static org.apache.commons.lang.Validate.notNull;
 
 public class MongoDBQueryHolder {
-    private final String collection;
-    private final SQLCommandType sqlCommandType;
+    private String collection;
+    private SQLCommandType sqlCommandType;
     private Document query = new Document();
     private Document projection = new Document();
     private Document sort = new Document();
@@ -39,6 +39,8 @@ public class MongoDBQueryHolder {
         this.sqlCommandType = sqlCommandType;
     }
 
+    public MongoDBQueryHolder() {
+    }
 
     /**
      * Get the collection to run the query on.

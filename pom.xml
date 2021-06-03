@@ -4,7 +4,8 @@
 
   <groupId>com.github.vincentrussell</groupId>
   <artifactId>sql-to-mongo-db-query-converter</artifactId>
-  <version>1.19-SNAPSHOT</version>
+  <!--<version>1.19-SNAPSHOT</version>-->
+  <version>1.19-cp-1.0.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>sql-to-mongo-db-query-converter</name>
@@ -12,7 +13,7 @@
     MongoDb based on Queries provided in SQL.</description>
   <url>https://github.com/vincentrussell/sql-to-mongo-db-query-converter</url>
 
-  <distributionManagement>
+<!--  <distributionManagement>
     <repository>
       <id>sonatype-nexus-staging</id>
       <name>Nexus Release Repository</name>
@@ -22,6 +23,19 @@
       <id>sonatype-nexus-snapshots</id>
       <name>Sonatype Nexus Snapshots</name>
       <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+    </snapshotRepository>
+  </distributionManagement>-->
+
+  <distributionManagement>
+    <repository>
+      <id>releases</id>
+      <name>Internal Releases</name>
+      <url>http://maven.successchannel.tech/nexus/content/repositories/releases/</url>
+    </repository>
+    <snapshotRepository>
+      <id>snapshots</id>
+      <name>Development Snapshots</name>
+      <url>http://maven.successchannel.tech/nexus/content/repositories/snapshots/</url>
     </snapshotRepository>
   </distributionManagement>
 
@@ -44,7 +58,9 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <jdk.version>1.7</jdk.version>
+    <!--<jdk.version>1.7</jdk.version>-->
+    <jdk.version>1.8</jdk.version>
+    <project.build.complier>1.8</project.build.complier>
     <slf4j.version>1.6.1</slf4j.version>
     <mongodb.version>3.12.0</mongodb.version>
   </properties>
@@ -236,6 +252,33 @@
   </dependencies>
 
   <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.3</version>
+        <configuration>
+          <source>${project.build.complier}</source>
+          <target>${project.build.complier}</target>
+          <encoding>${project.build.sourceEncoding}</encoding>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>attach-sources</id>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+  <!--<build>
 
     <pluginManagement>
       <plugins>
@@ -429,7 +472,7 @@
                   <version>2.9.1</version>
                   <configuration>
                     <aggregate>true</aggregate>
-                    <!--<linksource>true</linksource>-->
+                    &lt;!&ndash;<linksource>true</linksource>&ndash;&gt;
                     <links>
                       <link>
                         http://docs.oracle.com/javase/6/docs/api/
@@ -443,6 +486,6 @@
         </plugins>
       </build>
     </profile>
-  </profiles>
+  </profiles>-->
 
 </project>

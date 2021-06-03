@@ -295,7 +295,12 @@ public final class SQLCommandInfoHolder implements SQLInfoHolder {
             from = generateFromHolder(new FromHolder(this.defaultFieldType,
                     this.fieldNameToFieldTypeMapping), plainSelect.getFromItem(), plainSelect.getJoins());
             limit = SqlUtils.getLimitAsLong(plainSelect.getLimit());
-            offset = SqlUtils.getOffsetAsLong(plainSelect.getOffset());
+//            offset = SqlUtils.getOffsetAsLong(plainSelect.getOffset());
+            offset = SqlUtils.getOffsetAsLong(plainSelect.getLimit());
+            // 如果仍然为 -1，则尝试从 offset 中取
+            if (offset == -1){
+                offset = SqlUtils.getOffsetAsLong(plainSelect.getOffset());
+            }
             orderByElements = plainSelect.getOrderByElements();
             selectItems = plainSelect.getSelectItems();
             joins = plainSelect.getJoins();
